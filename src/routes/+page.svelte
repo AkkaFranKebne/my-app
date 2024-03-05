@@ -1,2 +1,6 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>this is how you can contact us:</p>
+<div>
+	<a href="/chat">chat with us</a>
+  <a href="/message">send a message</a>
+  <a href="/call">call us</a>
+</div>
