@@ -23,6 +23,7 @@
           input.value = '';
         }
         console.log(response)
+        answer();
 	}
 </script>
 
@@ -35,7 +36,6 @@
   />
 </label>
 
-<button on:click={answer}>Hej, answer me!</button>
 
 {#if number !== undefined}
 	<p>My answer is: {number}</p>
