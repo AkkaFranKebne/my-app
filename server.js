@@ -1,6 +1,7 @@
 import express from 'express' 
 import * as dotenv from 'dotenv' 
 import cors from 'cors' 
+import helmet from 'helmet' 
 import OpenAI from 'openai';
 
 
@@ -16,9 +17,27 @@ const app = express()
 
 
 // allow accepting and processing request from allowed domains
-app.use(cors());
-app.use(express.json())
 
+const corsOptions = {
+  origin: 'http://localhost:5001/', 
+  credentials :  true,
+  optionSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.use(express.json())
+app.use(helmet.permittedCrossDomainPolicies());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if ('OPTIONS' == req.method) {
+     res.sendStatus(200);
+   }
+   else {
+     next();
+   }});
 
 // routes/endpoint to expose expressjs backend to frontend "GET" request
 app.get('/', async (req, res) => {
@@ -69,3 +88,4 @@ app.post('/', async (req, res) => {
 // this get overriden when deployed to web server by the server url
 // "started on http://localhost:5001" makes the port link clickable from terminal
 app.listen(5001, () => console.log('server started on http://localhost:5001'));
+
