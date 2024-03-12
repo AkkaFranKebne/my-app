@@ -17,6 +17,23 @@
 
 <style>
 
+@-webkit-keyframes backgroundAnimation {
+    0%{background-position:0% 22%}
+    50%{background-position:100% 79%}
+    100%{background-position:0% 22%}
+}
+@-moz-keyframes backgroundAnimation {
+    0%{background-position:0% 22%}
+    50%{background-position:100% 79%}
+    100%{background-position:0% 22%}
+}
+@keyframes backgroundAnimation {
+    0%{background-position:0% 22%}
+    50%{background-position:100% 79%}
+    100%{background-position:0% 22%}
+}
+
+
   .mainwrapper {
     display: flex; 
     height: 100%; 
@@ -28,6 +45,12 @@
       45deg,
       #f7f0ac,#acf7f0,#f0acf7
     );
+    background-size: 500% 100%;
+    animation: backgroundAnimation 10s linear infinite;
+    animation-delay:  3s;
+    animation-direction: alternate;
+    animation-play-state:running;
+    
   }
 
   .main {
@@ -57,13 +80,9 @@
     }
   @media (min-width: 640px) {
 
-
-    .main {
+    .content {
       flex-direction: row;
   } 
-    .test1 {
-
-    }
 
   }
 </style>
