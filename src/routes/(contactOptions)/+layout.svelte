@@ -1,5 +1,5 @@
 <script>
-	import '../app.pcss';
+	import '../../app.pcss';
 </script>
 
 <nav>
@@ -8,5 +8,5 @@
 	<a href="/message">message</a>
 	<a href="/call">call</a>
 </nav>
-<!-- to show pages' content -->
+<!-- to show pages' content wherever but not main page -->
 <slot />

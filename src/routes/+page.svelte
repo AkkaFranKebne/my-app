@@ -1,30 +1,69 @@
 <script>
-	let test1 = true;
-  let test2 = true;
+  let mainwrapper = true;
+  let main = true;
+  let content = true;
+	let element = true;
 </script>
 
-<p>this is how you can contact us:</p>
-
-  <main>
-    <div class:test1>
-      <a class:test2 href="/chat">chat with us</a>
-      <a class:test2 href="/message">send a message</a>
-      <a class:test2 href="/call">call us</a>
+<div class:mainwrapper>
+  <main class:main>
+    <div class:content>
+      <a class:element href="/chat">chat with us</a>
+      <a class:element href="/message">send a message</a>
+      <a class:element href="/call">call us</a>
     </div>
   </main>
+</div>
 
 <style>
-  @media (min-width: 640px) {
-    .test1 {
-      display: flex;
-      flex-direction: column;
-      flex: 0 1 auto;
-    }
-    .test2 {
-      border: 3px solid hsl(0, 0%, 40%);
-      border-radius: 4px;
-      padding: 20px;
+
+  .mainwrapper {
+    display: flex; 
+    height: 100%; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center;
+    background: #f7f0ac;
+    background: linear-gradient(
+      45deg,
+      #f7f0ac,#acf7f0,#f0acf7
+    );
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 200px;
+  }
+
+  .element {
+      background-color: hsl(0, 0%, 100%);
+      color: hsl(0, 0%, 53%);
+      border-radius: 12px;
+      padding: 60px 40px;
       margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 auto;
+      box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     }
+  @media (min-width: 640px) {
+
+
+    .main {
+      flex-direction: row;
+  } 
+    .test1 {
+
+    }
+
   }
 </style>
