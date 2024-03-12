@@ -13,14 +13,36 @@
     stopped = false;
   }
 
+const routes = [
+  {
+    href: "/chat",
+    text: "chat with us"
+  },
+  {
+    href: "/message",
+    text: "send a message"
+  },
+  {
+    href: "/call",
+    text: "call us"
+  }
+]
 </script>
 
 <div class:mainwrapper class:stopped>
   <main class:main>
     <div class:content>
-      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/chat">chat with us</a>
-      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/message">send a message</a>
-      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/call">call us</a>
+      {#each routes as route (route.href)}
+        <a 
+          class:element 
+          on:mouseenter={stopAnimation} 
+          on:focus={stopAnimation} 
+          on:mouseout={startAnimation} 
+          on:blur={startAnimation} 
+          href={route.href}>
+          {route.text}
+        </a>
+      {/each}
     </div>
   </main>
 </div>
