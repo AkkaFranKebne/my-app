@@ -3,14 +3,24 @@
   let main = true;
   let content = true;
 	let element = true;
+  let stopped = false;
+
+  const stopAnimation = () => {
+    stopped = true;
+  }
+
+  const startAnimation = () => {
+    stopped = false;
+  }
+
 </script>
 
-<div class:mainwrapper>
+<div class:mainwrapper class:stopped>
   <main class:main>
     <div class:content>
-      <a class:element href="/chat">chat with us</a>
-      <a class:element href="/message">send a message</a>
-      <a class:element href="/call">call us</a>
+      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/chat">chat with us</a>
+      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/message">send a message</a>
+      <a class:element on:mouseenter={stopAnimation} on:focus={stopAnimation} on:mouseout={startAnimation} on:blur={startAnimation} href="/call">call us</a>
     </div>
   </main>
 </div>
@@ -33,7 +43,6 @@
     100%{background-position:0% 22%}
 }
 
-
   .mainwrapper {
     display: flex; 
     height: 100%; 
@@ -50,6 +59,10 @@
     animation-delay:  3s;
     animation-direction: alternate;
     animation-play-state:running;
+
+    &.stopped {
+      animation-play-state:paused;
+    }
     
   }
 
@@ -64,6 +77,13 @@
     justify-content: space-around;
     align-items: stretch;
     width: 200px;
+
+    @media (min-width: 640px) {
+    flex-direction: row;
+    width: 100vw;
+    max-width: 900px;
+    }
+  
   }
 
   .element {
@@ -75,14 +95,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1 1 auto;
+      flex: 1 0 0px;
       box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+      @media (min-width: 640px) {
+        margin: 0 10px;
     }
-  @media (min-width: 640px) {
-
-    .content {
-      flex-direction: row;
-  } 
-
-  }
+    }
 </style>
+
+
