@@ -1,4 +1,8 @@
 <script>
+  import { fade } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+  import { onMount } from 'svelte';
+
   let mainwrapper = true;
   let main = true;
   let content = true;
@@ -27,11 +31,16 @@ const routes = [
     text: "call us"
   }
 ]
+
+onMount(() => {
+		console.log('mount')
+	});
+
 </script>
 
 <div class:mainwrapper class:stopped>
   <main class:main>
-    <div class:content>
+    <div class:content transition:fade={{ delay: 250, duration: 300 }}>
       {#each routes as route (route.href)}
         <a 
           class:element 
@@ -119,6 +128,10 @@ const routes = [
       align-items: center;
       flex: 1 0 0px;
       box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       @media (min-width: 640px) {
         margin: 0 10px;
