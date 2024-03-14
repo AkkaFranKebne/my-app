@@ -1,12 +1,11 @@
 <script>
   import { fade } from 'svelte/transition';
-  import { flip } from 'svelte/animate';
   import { onMount } from 'svelte';
+  import AddressBox from './AddressBox.svelte';
 
   let mainwrapper = true;
   let main = true;
   let content = true;
-	let element = true;
   let stopped = false;
 
   const stopAnimation = () => {
@@ -42,15 +41,15 @@ onMount(() => {
   <main class:main>
     <div class:content transition:fade={{ delay: 250, duration: 300 }}>
       {#each routes as route (route.href)}
-        <a 
-          class:element 
+        <AddressBox 
+          class="element"
           on:mouseenter={stopAnimation} 
           on:focus={stopAnimation} 
           on:mouseout={startAnimation} 
           on:blur={startAnimation} 
-          href={route.href}>
-          {route.text}
-        </a>
+          href={route.href}
+          text={route.text}
+          />
       {/each}
     </div>
   </main>
@@ -116,27 +115,6 @@ onMount(() => {
     }
   
   }
-
-  .element {
-      background-color: hsl(0, 0%, 100%);
-      color: hsl(0, 0%, 53%);
-      border-radius: 12px;
-      padding: 60px 40px;
-      margin: 10px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1 0 0px;
-      box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      @media (min-width: 640px) {
-        margin: 0 10px;
-    }
-    }
 </style>
 
 
