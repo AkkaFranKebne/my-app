@@ -1,28 +1,38 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import clickSound from './clickSound.mp3';
+
   const dispatch = createEventDispatcher();
+
+  const audio = new Audio();
+	audio.src = clickSound;
+
   let clicked = false;
   let hovered = false;
   export let exclamation = '!';
 
   function mouseenter() {
-     dispatch('mouseenter');
-     hovered = true;
+      dispatch('mouseenter');
+      hovered = true;
+      audio.load();
+		  audio.play();
   }
   function focus() {
-     dispatch('focus');
-     hovered = true;
+      dispatch('focus');
+      hovered = true;
+      audio.load();
+		  audio.play();
   }
   function mouseout() {
-     dispatch('mouseout');
-     hovered = false;
+      dispatch('mouseout');
+      hovered = false;
   }
   function blur() {
-     dispatch('blur');
-     hovered = false;
+      dispatch('blur');
+      hovered = false;
   }
   function click() {
-     clicked = true;
+    clicked = true;
   }
 </script>
 
