@@ -49,6 +49,7 @@ onMount(() => {
           on:blur={startAnimation} 
           href={route.href}
           text={route.text}
+          exclamation={'?'}
           />
       {/each}
     </div>

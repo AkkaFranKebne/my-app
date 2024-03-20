@@ -3,6 +3,7 @@
   const dispatch = createEventDispatcher();
   let clicked = false;
   let hovered = false;
+  export let exclamation = '!';
 
   function mouseenter() {
      dispatch('mouseenter');
@@ -36,7 +37,7 @@
   class:clicked
   class:hovered
   href="{$$restProps.href || ''}">
-  {$$restProps.text || ''}
+  {$$restProps.text || ''}{exclamation}
 </a>
 
 
