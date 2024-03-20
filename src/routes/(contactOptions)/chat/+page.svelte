@@ -60,6 +60,8 @@
 
 {#if number !== undefined}
 	<p>My answer is: {number}</p>
+{:else}
+  <p>idk</p>
 {/if}
 
 
