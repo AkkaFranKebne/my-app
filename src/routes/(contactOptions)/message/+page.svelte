@@ -2,11 +2,17 @@
 
 	import { enhance } from "$app/forms";
   let sending = false;
+  let name = '';
 
 </script>
+{#if name.length > 0}
+<h1>Hello {name}!</h1>
+{:else}
+<h1>Hello!</h1>
+{/if}
 
+<p>you can write us a message:</p>
 
-<p>you can write us a message</p>
 <form 
   method="POST" 
   action="?/send"
@@ -25,6 +31,7 @@
     <input
       name="name"
       autocomplete="off"
+      bind:value={name} 
     />
   </label>
   <label>
