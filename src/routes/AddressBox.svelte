@@ -32,7 +32,7 @@
   on:focus={focus} 
   on:mouseout={mouseout} 
   on:blur={blur} 
-  on:click={click}
+  on:click|once={click}
   class="{$$restProps.class || ''}" 
   class:clicked
   class:hovered
