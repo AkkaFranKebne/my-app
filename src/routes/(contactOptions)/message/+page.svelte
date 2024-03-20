@@ -3,6 +3,7 @@
 	import { enhance } from "$app/forms";
   let sending = false;
   let name = '';
+  let enabled = false;
 
 </script>
 {#if name.length > 0}
@@ -52,5 +53,6 @@
     message
     <textarea name="messageText" rows="4" cols="50">write your message...</textarea>
   </label>
-  <button type="submit" disabled={sending}>send</button>
+  <input type="checkbox" bind:checked={enabled} />
+  <button type="submit" disabled={!enabled || sending}>send</button>
 </form>
