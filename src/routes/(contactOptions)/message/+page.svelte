@@ -5,11 +5,6 @@
   let name = '';
   let email_input = '';
   let enabled = false;
-  let email_value = '';
-
-  email.subscribe((value) => {
-    email_value = value;
-  });
 
 </script>
 {#if name.length > 0}
@@ -61,10 +56,10 @@
     message
     <textarea name="messageText" rows="4" cols="50">write your message...</textarea>
   </label>
-  {#if email_value.length > 0}
+  {#if $email.length > 0}
   <label>
     <input type="checkbox" bind:checked={enabled} />
-    {email_value} is my email
+    {$email} is my email
   </label>
   {/if}
   <button type="submit" disabled={!enabled || sending}>send</button>
