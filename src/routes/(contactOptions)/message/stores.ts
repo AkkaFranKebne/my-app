@@ -18,3 +18,15 @@ export const elapsed = derived(
 	time,
 	($time) => Math.round(($time - start) / 1000)
 );
+
+
+ function createMessage() {
+	const { subscribe, set, update } = writable('');
+
+	return {
+		subscribe,
+		update: (text: string) => update((n) => n + text),
+		reset: () => set('')
+	};
+}
+export const message = createMessage();

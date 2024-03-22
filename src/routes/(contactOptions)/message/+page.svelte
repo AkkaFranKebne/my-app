@@ -1,5 +1,5 @@
 <script>
-  import { email, time, elapsed } from './stores';
+  import { email, time, elapsed, message } from './stores';
 	import { enhance } from "$app/forms";
   let sending = false;
   let name = '';
@@ -70,8 +70,16 @@
   </label>
   <label>
     message
-    <textarea name="messageText" rows="4" cols="50">write your message...</textarea>
+    <textarea 
+      bind:value={$message}
+      on:keyup={(event) => message.update( event.key)}
+      name="messageText" 
+      rows="4" 
+      cols="50"/>
   </label>
+  <button on:click={message.reset}>clean message</button>
+  Your message:
+  <div>{$message}</div>
   {#if $email.length > 0}
   <label>
     <input type="checkbox" bind:checked={enabled} />
