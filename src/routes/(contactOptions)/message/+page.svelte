@@ -1,9 +1,15 @@
 <script>
-
+  import { email } from './stores';
 	import { enhance } from "$app/forms";
   let sending = false;
   let name = '';
+  let email_input = '';
   let enabled = false;
+  let email_value = '';
+
+  email.subscribe((value) => {
+    email_value = value;
+  });
 
 </script>
 {#if name.length > 0}
@@ -40,6 +46,8 @@
       <input
         name="email"
         autocomplete="off"
+        bind:value={email_input} 
+        on:keyup={() => email.set( email_input)}
       />
   </label>
   <label>
@@ -53,6 +61,11 @@
     message
     <textarea name="messageText" rows="4" cols="50">write your message...</textarea>
   </label>
-  <input type="checkbox" bind:checked={enabled} />
+  {#if email_value.length > 0}
+  <label>
+    <input type="checkbox" bind:checked={enabled} />
+    {email_value} is my email
+  </label>
+  {/if}
   <button type="submit" disabled={!enabled || sending}>send</button>
 </form>
