@@ -1,10 +1,20 @@
 <script>
-  import { email } from './stores';
+  import { email, time } from './stores';
 	import { enhance } from "$app/forms";
   let sending = false;
   let name = '';
   let email_input = '';
   let enabled = false;
+
+  const formatter = new Intl.DateTimeFormat(
+		'en',
+		{
+			hour12: true,
+			hour: 'numeric',
+			minute: '2-digit',
+			second: '2-digit'
+		}
+	);
 
 </script>
 {#if name.length > 0}
@@ -13,6 +23,7 @@
 <h1>Hello!</h1>
 {/if}
 
+<p>The time is {formatter.format($time)}</p>
 <p>you can write us a message:</p>
 
 <form 
