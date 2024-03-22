@@ -1,5 +1,5 @@
 <script>
-  import { email, time } from './stores';
+  import { email, time, elapsed } from './stores';
 	import { enhance } from "$app/forms";
   let sending = false;
   let name = '';
@@ -24,6 +24,11 @@
 {/if}
 
 <p>The time is {formatter.format($time)}</p>
+<p>
+	This page has been open for
+	{$elapsed}
+	{$elapsed === 1 ? 'second' : 'seconds'}
+</p>
 <p>you can write us a message:</p>
 
 <form 
