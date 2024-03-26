@@ -1,6 +1,14 @@
 <script>
   import { email, time, elapsed, message } from './stores';
 	import { enhance } from "$app/forms";
+  import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
+
+	const progress = tweened(0, {
+		duration: 400,
+		easing: cubicOut
+	});
+
   let sending = false;
   let name = '';
   let email_input = '';
@@ -31,6 +39,8 @@
 </p>
 <p>you can write us a message:</p>
 
+<progress value={$progress} />
+
 <form 
   method="POST" 
   action="?/send"
@@ -59,6 +69,7 @@
         autocomplete="off"
         bind:value={email_input} 
         on:keyup={() => email.set( email_input)}
+        on:keydown={() => {if (email_input.length > 0) {progress.set(0.25)}}}
       />
   </label>
   <label>
@@ -73,6 +84,7 @@
     <textarea 
       bind:value={$message}
       on:keyup={(event) => message.update( event.key)}
+      on:keydown={() => {if ($message.length > 0) {progress.set(0.50)}}}
       name="messageText" 
       rows="4" 
       cols="50"/>
@@ -82,7 +94,7 @@
   <div>{$message}</div>
   {#if $email.length > 0}
   <label>
-    <input type="checkbox" bind:checked={enabled} />
+    <input type="checkbox" bind:checked={enabled} on:change={() => {if (enabled) {progress.set(1)}}} />
     {$email} is my email
   </label>
   {/if}
